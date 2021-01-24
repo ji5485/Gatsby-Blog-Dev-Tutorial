@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import Text from 'components/Text';
 
-const IndexPage = () => <Text text="Home" />;
+const IndexPage: FunctionComponent = function () {
+  return <Text text="Hello, World!" />;
+};
 
 export default IndexPage;

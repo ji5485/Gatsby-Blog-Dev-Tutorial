@@ -1,7 +1,7 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent } from 'react';
 
 interface TextProps {
-  text: String;
+  text: string;
 }
 
 const Text: FunctionComponent<TextProps> = function ({ text }) {
