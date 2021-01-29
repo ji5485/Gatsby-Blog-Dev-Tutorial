@@ -1,10 +1,18 @@
 import React, { FunctionComponent } from 'react';
+import { Link } from 'gatsby';
 import styled from '@emotion/styled';
+import { getRandomKey } from 'utils/utils';
 
-const POST_ITEM_IMAGE =
-  'https://ji5485.github.io/static/e4f34c558ae8e8235ff53b0311085796/4d854/javascript-core-concept-summary-function-1.webp';
+export interface PostItemProps {
+  title: string;
+  thumbnail: string;
+  date: string;
+  category: string[];
+  summary: string;
+  link: string;
+}
 
-const PostItemWrapper = styled.div`
+const PostItemWrapper = styled(Link)`
   border-radius: 10px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
   cursor: pointer;
@@ -67,25 +75,27 @@ const Summary = styled.div`
   overflow: hidden;
 `;
 
-const PostItem: FunctionComponent = function () {
+const PostItem: FunctionComponent<PostItemProps> = function ({
+  title,
+  thumbnail,
+  date,
+  category,
+  summary,
+  link,
+}) {
   return (
-    <PostItemWrapper>
-      <PostImage src={POST_ITEM_IMAGE} alt="Post Item Image" />
+    <PostItemWrapper to={link}>
+      <PostImage src={thumbnail} alt="Post Item Image" />
 
       <PostItemContent>
-        <Title>Post Item Title</Title>
-        <Date>2020.01.29.</Date>
+        <Title>{title}</Title>
+        <Date>{date}</Date>
         <Category>
-          <CategoryItem>Web</CategoryItem>
-          <CategoryItem>Optimization</CategoryItem>
-          <CategoryItem>Architecture</CategoryItem>
+          {category.map(item => (
+            <CategoryItem key={getRandomKey()}>{item}</CategoryItem>
+          ))}
         </Category>
-        <Summary>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-          repellat doloremque fugit quis rem temporibus! Maxime molestias, sunt
-          rem debitis odit harum impedit. Modi cupiditate harum dignissimos eos
-          in corrupti!
-        </Summary>
+        <Summary>{summary}</Summary>
       </PostItemContent>
     </PostItemWrapper>
   );

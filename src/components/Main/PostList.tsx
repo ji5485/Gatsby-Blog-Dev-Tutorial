@@ -1,9 +1,16 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useMemo } from 'react';
 import styled from '@emotion/styled';
-import PostItem from 'components/Main/PostItem';
+import PostItem, { PostItemProps } from 'components/Main/PostItem';
+import { getRandomKey } from 'utils/utils';
+import DummyData from '../../../static/post-dummy-data.json';
+import useInfiniteScroll from 'hooks/useInfiniteScroll';
+
+interface PostListProps {
+  category?: string;
+}
 
 const PostListWrapper = styled.div`
-  padding: 100px 0;
+  padding: 50px 0 100px;
   width: 768px;
   margin: 0 auto;
   display: grid;
@@ -11,13 +18,22 @@ const PostListWrapper = styled.div`
   grid-gap: 20px;
 `;
 
-const PostList: FunctionComponent = function () {
+const PostList: FunctionComponent<PostListProps> = function ({ category }) {
+  const { containerRef, count } = useInfiniteScroll();
+
+  const postListData = useMemo(
+    () =>
+      DummyData.filter((post: PostItemProps) =>
+        category ? post.category.includes(category) : true,
+      ).slice(0, count * 10),
+    [category, count],
+  );
+
   return (
-    <PostListWrapper>
-      <PostItem />
-      <PostItem />
-      <PostItem />
-      <PostItem />
+    <PostListWrapper ref={containerRef}>
+      {postListData.map((post: PostItemProps) => (
+        <PostItem {...post} key={getRandomKey()} />
+      ))}
     </PostListWrapper>
   );
 };
