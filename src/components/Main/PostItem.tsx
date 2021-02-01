@@ -2,13 +2,18 @@ import React, { FunctionComponent } from 'react';
 import { Link } from 'gatsby';
 import styled from '@emotion/styled';
 import { getRandomKey } from 'utils/utils';
+import Img, { FluidObject } from 'gatsby-image';
 
-export interface PostItemProps {
+interface PostItemProps {
   title: string;
-  thumbnail: string;
   date: string;
-  category: string[];
+  categories: string[];
   summary: string;
+  thumbnail: {
+    childImageSharp: {
+      fluid: FluidObject;
+    };
+  };
   link: string;
 }
 
@@ -23,7 +28,7 @@ const PostItemWrapper = styled(Link)`
   }
 `;
 
-const PostImage = styled.img`
+const PostImage = styled(Img)`
   width: 100%;
   height: 200px;
   object-fit: cover;
@@ -77,21 +82,23 @@ const Summary = styled.div`
 
 const PostItem: FunctionComponent<PostItemProps> = function ({
   title,
-  thumbnail,
   date,
-  category,
+  categories,
   summary,
+  thumbnail: {
+    childImageSharp: { fluid },
+  },
   link,
 }) {
   return (
     <PostItemWrapper to={link}>
-      <PostImage src={thumbnail} alt="Post Item Image" />
+      <PostImage fluid={fluid} alt="Post Item Image" />
 
       <PostItemContent>
         <Title>{title}</Title>
         <Date>{date}</Date>
         <Category>
-          {category.map(item => (
+          {categories.map(item => (
             <CategoryItem key={getRandomKey()}>{item}</CategoryItem>
           ))}
         </Category>
