@@ -1,8 +1,13 @@
 import React, { FunctionComponent } from 'react';
 import styled from '@emotion/styled';
+import { Link } from 'gatsby';
 import { getRandomKey } from 'utils/utils';
 
 const CATEGORY_LIST = [
+  {
+    name: 'ALL',
+    count: 10,
+  },
   {
     name: 'Web',
     count: 4,
@@ -22,7 +27,7 @@ const CATEGORY_LIST = [
 ];
 
 type CategoryIsActive = {
-  active: boolean;
+  active: string;
 };
 
 interface CategoryListProps {
@@ -36,12 +41,12 @@ const CategoryListWrapper = styled.div`
   flex-wrap: wrap;
 `;
 
-const CategoryItem = styled.div<CategoryIsActive>`
+const CategoryItem = styled(Link)<CategoryIsActive>`
   font-size: 18px;
   margin-right: 20px;
   padding: 5px 0;
   cursor: pointer;
-  font-weight: ${({ active }) => (active ? '800' : '400')};
+  font-weight: ${({ active }) => (active === 'true' ? '800' : '400')};
 
   &:last-of-type {
     margin-right: 0;
@@ -54,7 +59,11 @@ const CategoryList: FunctionComponent<CategoryListProps> = function ({
   return (
     <CategoryListWrapper>
       {CATEGORY_LIST.map(({ name, count }) => (
-        <CategoryItem active={name === category} key={getRandomKey()}>
+        <CategoryItem
+          to={`/?category=${name}`}
+          active={String(name === category)}
+          key={getRandomKey()}
+        >
           #{name}({count})
         </CategoryItem>
       ))}

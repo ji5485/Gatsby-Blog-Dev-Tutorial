@@ -1,12 +1,29 @@
 import React, { FunctionComponent, useMemo } from 'react';
 import styled from '@emotion/styled';
-import PostItem, { PostItemProps } from 'components/Main/PostItem';
+import PostItem from 'components/Main/PostItem';
 import { getRandomKey } from 'utils/utils';
-import DummyData from '../../../static/post-dummy-data.json';
 import useInfiniteScroll from 'hooks/useInfiniteScroll';
+import { FluidObject } from 'gatsby-image';
+
+export type PostType = {
+  node: {
+    frontmatter: {
+      title: string;
+      summary: string;
+      date: string;
+      categories: string[];
+      thumbnail: {
+        childImageSharp: {
+          fluid: FluidObject;
+        };
+      };
+    };
+  };
+};
 
 interface PostListProps {
   category?: string;
+  posts: PostType[];
 }
 
 const PostListWrapper = styled.div`
@@ -18,21 +35,32 @@ const PostListWrapper = styled.div`
   grid-gap: 20px;
 `;
 
-const PostList: FunctionComponent<PostListProps> = function ({ category }) {
+const PostList: FunctionComponent<PostListProps> = function ({
+  category,
+  posts,
+}) {
   const { containerRef, count } = useInfiniteScroll();
 
   const postListData = useMemo(
     () =>
-      DummyData.filter((post: PostItemProps) =>
-        category ? post.category.includes(category) : true,
-      ).slice(0, count * 10),
+      posts
+        .filter(({ node }: PostType) =>
+          category && category !== 'ALL'
+            ? node.frontmatter.categories.includes(category)
+            : true,
+        )
+        .slice(0, count * 10),
     [category, count],
   );
 
   return (
     <PostListWrapper ref={containerRef}>
-      {postListData.map((post: PostItemProps) => (
-        <PostItem {...post} key={getRandomKey()} />
+      {postListData.map(({ node: { frontmatter } }: PostType) => (
+        <PostItem
+          {...frontmatter}
+          link="https://www.naver.com"
+          key={getRandomKey()}
+        />
       ))}
     </PostListWrapper>
   );
