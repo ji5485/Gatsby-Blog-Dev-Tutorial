@@ -22,7 +22,7 @@ export type PostType = {
 };
 
 interface PostListProps {
-  category?: string;
+  selectedCategory: string;
   posts: PostType[];
 }
 
@@ -33,10 +33,16 @@ const PostListWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 20px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 50px 20px;
+    grid-template-columns: 1fr;
+  }
 `;
 
 const PostList: FunctionComponent<PostListProps> = function ({
-  category,
+  selectedCategory,
   posts,
 }) {
   const { containerRef, count } = useInfiniteScroll();
@@ -45,12 +51,12 @@ const PostList: FunctionComponent<PostListProps> = function ({
     () =>
       posts
         .filter(({ node }: PostType) =>
-          category && category !== 'ALL'
-            ? node.frontmatter.categories.includes(category)
+          selectedCategory && selectedCategory !== 'ALL'
+            ? node.frontmatter.categories.includes(selectedCategory)
             : true,
         )
         .slice(0, count * 10),
-    [category, count],
+    [selectedCategory, count],
   );
 
   return (

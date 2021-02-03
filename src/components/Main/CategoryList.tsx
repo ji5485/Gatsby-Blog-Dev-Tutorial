@@ -3,35 +3,15 @@ import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 import { getRandomKey } from 'utils/utils';
 
-const CATEGORY_LIST = [
-  {
-    name: 'ALL',
-    count: 10,
-  },
-  {
-    name: 'Web',
-    count: 4,
-  },
-  {
-    name: 'Architecture',
-    count: 3,
-  },
-  {
-    name: 'Optimization',
-    count: 9,
-  },
-  {
-    name: 'Security',
-    count: 7,
-  },
-];
-
 type CategoryIsActive = {
   active: string;
 };
 
-interface CategoryListProps {
-  category?: string;
+export interface CategoryListProps {
+  selectedCategory: string;
+  categoryList: {
+    [key: string]: number;
+  };
 }
 
 const CategoryListWrapper = styled.div`
@@ -39,6 +19,12 @@ const CategoryListWrapper = styled.div`
   margin: 100px auto 0;
   display: flex;
   flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin-top: 50px;
+    padding: 0 20px;
+  }
 `;
 
 const CategoryItem = styled(Link)<CategoryIsActive>`
@@ -51,17 +37,22 @@ const CategoryItem = styled(Link)<CategoryIsActive>`
   &:last-of-type {
     margin-right: 0;
   }
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
 `;
 
 const CategoryList: FunctionComponent<CategoryListProps> = function ({
-  category,
+  selectedCategory,
+  categoryList,
 }) {
   return (
     <CategoryListWrapper>
-      {CATEGORY_LIST.map(({ name, count }) => (
+      {Object.entries(categoryList).map(([name, count]) => (
         <CategoryItem
           to={`/?category=${name}`}
-          active={String(name === category)}
+          active={String(name === selectedCategory)}
           key={getRandomKey()}
         >
           #{name}({count})
