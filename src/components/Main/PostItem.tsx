@@ -22,6 +22,8 @@ const PostItemWrapper = styled(Link)`
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
   cursor: pointer;
   transition: 0.3s box-shadow;
+  display: flex;
+  flex-direction: column;
 
   &:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -37,12 +39,22 @@ const PostImage = styled(Img)`
 
 const PostItemContent = styled.div`
   padding: 15px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Title = styled.div`
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 3px;
+  text-overflow: ellipsis;
+  white-space: normal;
+  overflow-wrap: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 `;
 
 const Date = styled.div`
@@ -78,6 +90,7 @@ const Summary = styled.div`
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  margin-top: auto;
 `;
 
 const PostItem: FunctionComponent<PostItemProps> = function ({
