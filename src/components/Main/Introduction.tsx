@@ -6,7 +6,7 @@ const Background = styled.div`
   width: 100%;
   padding: 100px 0;
   background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
-  color: white;
+  color: #ffffff;
 
   @media (max-width: 768px) {
     padding: 30px 0;
@@ -14,11 +14,11 @@ const Background = styled.div`
 `;
 
 const Wrapper = styled.div`
-  width: 768px;
-  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 768px;
+  margin: 0 auto;
 
   @media (max-width: 768px) {
     width: 100%;
@@ -28,14 +28,9 @@ const Wrapper = styled.div`
   }
 `;
 
-const TextBox = styled.div`
-  color: white;
-`;
-
 const SubTitle = styled.div`
   font-size: 20px;
   font-weight: 400;
-  color: #ffffff;
 
   @media (max-width: 768px) {
     font-size: 18px;
@@ -44,14 +39,13 @@ const SubTitle = styled.div`
 `;
 
 const Title = styled.div`
+  margin-top: 10px;
   font-size: 35px;
   font-weight: 700;
-  color: #ffffff;
-  margin-top: 10px;
 
   @media (max-width: 768px) {
-    font-size: 25px;
     margin-top: 5px;
+    font-size: 25px;
   }
 `;
 
@@ -59,10 +53,10 @@ const Introduction: FunctionComponent = function () {
   return (
     <Background>
       <Wrapper>
-        <TextBox>
+        <div>
           <SubTitle>Nice to Meet You,</SubTitle>
           <Title>I'm Junior Frontend Developer Hyun.</Title>
-        </TextBox>
+        </div>
 
         <ProfileImage />
       </Wrapper>
