@@ -19,13 +19,7 @@ interface IndexPageProps {
   };
 }
 
-const Container = styled.div`
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-`;
+const Container = styled.div``;
 
 const IndexPage: FunctionComponent<IndexPageProps> = function ({
   location: { search },
@@ -36,7 +30,7 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
   const parsed: ParsedQuery<string> = queryString.parse(search);
   const selectedCategory: string =
     typeof parsed.category === 'object' || !parsed.category
-      ? 'ALL'
+      ? 'All'
       : parsed.category;
 
   const categoryList = useMemo(
@@ -55,11 +49,11 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
             else list[category]++;
           });
 
-          list['ALL']++;
+          list['All']++;
 
           return list;
         },
-        { ALL: 0 },
+        { All: 0 },
       ),
     [],
   );

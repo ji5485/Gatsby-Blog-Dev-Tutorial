@@ -2,9 +2,9 @@ import React, { FunctionComponent } from 'react';
 import styled from '@emotion/styled';
 
 const FooterWrapper = styled.div`
-  padding: 50px 0;
   display: grid;
   place-items: center;
+  padding: 50px 0;
   font-size: 15px;
   text-align: center;
   line-height: 1.5;

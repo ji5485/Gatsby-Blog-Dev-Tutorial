@@ -15,10 +15,10 @@ export interface CategoryListProps {
 }
 
 const CategoryListWrapper = styled.div`
-  width: 768px;
-  margin: 100px auto 0;
   display: flex;
   flex-wrap: wrap;
+  width: 768px;
+  margin: 100px auto 0;
 
   @media (max-width: 768px) {
     width: 100%;
@@ -28,11 +28,11 @@ const CategoryListWrapper = styled.div`
 `;
 
 const CategoryItem = styled(Link)<CategoryIsActive>`
-  font-size: 18px;
   margin-right: 20px;
   padding: 5px 0;
-  cursor: pointer;
+  font-size: 18px;
   font-weight: ${({ active }) => (active === 'true' ? '800' : '400')};
+  cursor: pointer;
 
   &:last-of-type {
     margin-right: 0;

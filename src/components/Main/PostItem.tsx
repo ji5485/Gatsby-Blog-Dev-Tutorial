@@ -18,12 +18,12 @@ interface PostItemProps {
 }
 
 const PostItemWrapper = styled(Link)`
-  border-radius: 10px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
-  cursor: pointer;
-  transition: 0.3s box-shadow;
   display: flex;
   flex-direction: column;
+  border-radius: 10px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+  transition: 0.3s box-shadow;
+  cursor: pointer;
 
   &:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
@@ -33,28 +33,28 @@ const PostItemWrapper = styled(Link)`
 const PostImage = styled(Img)`
   width: 100%;
   height: 200px;
-  object-fit: cover;
   border-radius: 10px 10px 0 0;
+  object-fit: cover;
 `;
 
 const PostItemContent = styled.div`
-  padding: 15px;
   flex: 1;
   display: flex;
   flex-direction: column;
+  padding: 15px;
 `;
 
 const Title = styled.div`
-  font-size: 20px;
-  font-weight: 700;
+  display: -webkit-box;
+  overflow: hidden;
   margin-bottom: 3px;
   text-overflow: ellipsis;
   white-space: normal;
   overflow-wrap: break-word;
-  display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  overflow: hidden;
+  font-size: 20px;
+  font-weight: 700;
 `;
 
 const Date = styled.div`
@@ -71,26 +71,26 @@ const Category = styled.div`
 `;
 
 const CategoryItem = styled.div`
-  font-size: 14px;
-  font-weight: 700;
+  margin: 0 5px;
   padding: 3px 5px;
   border-radius: 3px;
   background: black;
+  font-size: 14px;
+  font-weight: 700;
   color: white;
-  margin: 0 5px;
 `;
 
 const Summary = styled.div`
-  font-size: 16px;
-  opacity: 0.8;
+  display: -webkit-box;
+  overflow: hidden;
+  margin-top: auto;
   text-overflow: ellipsis;
   white-space: normal;
   overflow-wrap: break-word;
-  display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  overflow: hidden;
-  margin-top: auto;
+  font-size: 16px;
+  opacity: 0.8;
 `;
 
 const PostItem: FunctionComponent<PostItemProps> = function ({
