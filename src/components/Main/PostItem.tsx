@@ -30,11 +30,10 @@ const PostItemWrapper = styled(Link)`
   }
 `;
 
-const PostImage = styled(Img)`
+const ThumbnailImage = styled(Img)`
   width: 100%;
   height: 200px;
   border-radius: 10px 10px 0 0;
-  object-fit: cover;
 `;
 
 const PostItemContent = styled.div`
@@ -105,7 +104,7 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
 }) {
   return (
     <PostItemWrapper to={link}>
-      <PostImage fluid={fluid} alt="Post Item Image" />
+      <ThumbnailImage fluid={fluid} alt="Post Item Image" />
 
       <PostItemContent>
         <Title>{title}</Title>

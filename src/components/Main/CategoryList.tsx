@@ -3,16 +3,15 @@ import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 import { getRandomKey } from 'utils/utils';
 
-type GatsbyLinkProps = {
-  active: boolean;
-  children: ReactNode;
-  className?: string;
-  to: string;
-};
-
 type CategoryItemProps = {
   active: boolean;
 };
+
+type GatsbyLinkProps = {
+  children: ReactNode;
+  className?: string;
+  to: string;
+} & CategoryItemProps;
 
 export interface CategoryListProps {
   selectedCategory: string;
