@@ -29,7 +29,7 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
 }) {
   const parsed: ParsedQuery<string> = queryString.parse(search);
   const selectedCategory: string =
-    typeof parsed.category === 'object' || !parsed.category
+    typeof parsed.category !== 'string' || !parsed.category
       ? 'All'
       : parsed.category;
 
@@ -90,7 +90,7 @@ export const getPostList = graphql`
               childImageSharp {
                 fluid(
                   maxWidth: 768
-                  maxHeight: 350
+                  maxHeight: 200
                   fit: INSIDE
                   quality: 100
                 ) {
