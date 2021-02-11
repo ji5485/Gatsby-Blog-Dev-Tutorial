@@ -50,9 +50,9 @@ const PostList: FunctionComponent<PostListProps> = function ({
   const postListData = useMemo(
     () =>
       posts
-        .filter(({ node }: PostType) =>
+        .filter(({ node: { frontmatter: { categories } } }: PostType) =>
           selectedCategory && selectedCategory !== 'All'
-            ? node.frontmatter.categories.includes(selectedCategory)
+            ? categories.includes(selectedCategory)
             : true,
         )
         .slice(0, count * 10),
