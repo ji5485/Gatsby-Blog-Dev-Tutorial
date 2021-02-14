@@ -13,7 +13,7 @@ const useInfiniteScroll = function (
   const postListByCategory = useMemo<PostType[]>(
     () =>
       posts.filter(({ node: { frontmatter: { categories } } }: PostType) =>
-        selectedCategory && selectedCategory !== 'All'
+        selectedCategory !== 'All'
           ? categories.includes(selectedCategory)
           : true,
       ),
@@ -42,7 +42,7 @@ const useInfiniteScroll = function (
     observer.observe(
       containerRef.current.children[containerRef.current.children.length - 1],
     );
-  }, [count]);
+  }, [count, selectedCategory]);
 
   return {
     containerRef,

@@ -17,6 +17,14 @@ const defaultStyle = css`
     text-decoration: none;
     cursor: pointer;
   }
+
+  html,
+  body,
+  div[id='___gatsby'],
+  div[id='root'],
+  div[id='gatsby-focus-wrapper'] {
+    min-height: 100vh;
+  }
 `;
 
 const GlobalStyle: FunctionComponent = function () {
