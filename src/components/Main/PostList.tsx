@@ -1,12 +1,12 @@
-import React, { FunctionComponent, useMemo } from 'react';
+import React, { FunctionComponent } from 'react';
 import styled from '@emotion/styled';
 import PostItem from 'components/Main/PostItem';
-import { getRandomKey } from 'utils/utils';
 import useInfiniteScroll from 'hooks/useInfiniteScroll';
 import { FluidObject } from 'gatsby-image';
 
 export type PostType = {
   node: {
+    id: string;
     frontmatter: {
       title: string;
       summary: string;
@@ -45,28 +45,12 @@ const PostList: FunctionComponent<PostListProps> = function ({
   selectedCategory,
   posts,
 }) {
-  const { containerRef, count } = useInfiniteScroll();
-
-  const postListData = useMemo(
-    () =>
-      posts
-        .filter(({ node: { frontmatter: { categories } } }: PostType) =>
-          selectedCategory && selectedCategory !== 'All'
-            ? categories.includes(selectedCategory)
-            : true,
-        )
-        .slice(0, count * 10),
-    [selectedCategory, count],
-  );
+  const { containerRef, postList } = useInfiniteScroll(selectedCategory, posts);
 
   return (
     <PostListWrapper ref={containerRef}>
-      {postListData.map(({ node: { frontmatter } }: PostType) => (
-        <PostItem
-          {...frontmatter}
-          link="https://www.naver.com"
-          key={getRandomKey()}
-        />
+      {postList.map(({ node: { id, frontmatter } }: PostType) => (
+        <PostItem {...frontmatter} link="https://www.naver.com" key={id} />
       ))}
     </PostListWrapper>
   );
