@@ -1,7 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { Link } from 'gatsby';
 import styled from '@emotion/styled';
-import { getRandomKey } from 'utils/utils';
 import Img, { FluidObject } from 'gatsby-image';
 
 interface PostItemProps {
@@ -111,7 +110,7 @@ const PostItem: FunctionComponent<PostItemProps> = function ({
         <Date>{date}</Date>
         <Category>
           {categories.map(item => (
-            <CategoryItem key={getRandomKey()}>{item}</CategoryItem>
+            <CategoryItem key={item}>{item}</CategoryItem>
           ))}
         </Category>
         <Summary>{summary}</Summary>

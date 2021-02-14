@@ -81,6 +81,7 @@ export const getPostList = graphql`
     ) {
       edges {
         node {
+          id
           frontmatter {
             title
             summary

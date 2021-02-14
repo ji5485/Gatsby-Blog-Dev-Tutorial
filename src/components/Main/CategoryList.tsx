@@ -1,7 +1,6 @@
 import React, { FunctionComponent, ReactNode } from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
-import { getRandomKey } from 'utils/utils';
 
 type CategoryItemProps = {
   active: boolean;
@@ -61,7 +60,7 @@ const CategoryList: FunctionComponent<CategoryListProps> = function ({
         <CategoryItem
           to={`/?category=${name}`}
           active={name === selectedCategory}
-          key={getRandomKey()}
+          key={name}
         >
           #{name}({count})
         </CategoryItem>
