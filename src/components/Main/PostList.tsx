@@ -7,6 +7,9 @@ import { FluidObject } from 'gatsby-image';
 export type PostType = {
   node: {
     id: string;
+    fields: {
+      slug: string;
+    };
     frontmatter: {
       title: string;
       summary: string;
@@ -49,9 +52,17 @@ const PostList: FunctionComponent<PostListProps> = function ({
 
   return (
     <PostListWrapper ref={containerRef}>
-      {postList.map(({ node: { id, frontmatter } }: PostType) => (
-        <PostItem {...frontmatter} link="https://www.naver.com" key={id} />
-      ))}
+      {postList.map(
+        ({
+          node: {
+            id,
+            fields: { slug },
+            frontmatter,
+          },
+        }: PostType) => (
+          <PostItem {...frontmatter} link={slug} key={id} />
+        ),
+      )}
     </PostListWrapper>
   );
 };

@@ -1,5 +1,7 @@
 import React, { FunctionComponent } from 'react';
 import styled from '@emotion/styled';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 const PostHeadInfoWrapper = styled.div`
   display: flex;
@@ -10,7 +12,18 @@ const PostHeadInfoWrapper = styled.div`
   padding: 60px 0;
 `;
 
-const PrevPageIcon = styled.div``;
+const PrevPageIcon = styled.div`
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #000000;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+`;
 
 const Title = styled.div`
   margin-top: auto;
@@ -28,9 +41,13 @@ const PostData = styled.div`
 `;
 
 const PostHeadInfo: FunctionComponent = function () {
+  const goBackPage = () => window.history.back();
+
   return (
     <PostHeadInfoWrapper>
-      <PrevPageIcon></PrevPageIcon>
+      <PrevPageIcon onClick={goBackPage}>
+        <FontAwesomeIcon icon={faArrowLeft} />
+      </PrevPageIcon>
       <Title>Test Title 1</Title>
       <PostData>
         <div>Web / Backend / Hacking / Algorithm</div>
