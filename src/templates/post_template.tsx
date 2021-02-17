@@ -1,18 +1,51 @@
 import React, { FunctionComponent } from 'react';
+import { graphql } from 'gatsby';
 import Template from 'components/Common/Template';
 import PostHead from 'components/Post/PostHead';
 import PostContent from 'components/Post/PostContent';
 
-interface InfoPageProps {}
+interface PostTemplateProps {}
 
-const InfoPage: FunctionComponent<InfoPageProps> = function (props) {
-  console.log(props);
+const PostTemplate: FunctionComponent<PostTemplateProps> = function ({
+  data: {
+    allMarkdownRemark: { edges },
+  },
+}) {
+  const {
+    node: { html, frontmatter },
+  } = edges[0];
+
   return (
     <Template>
-      <PostHead />
-      <PostContent />
+      <PostHead {...frontmatter} />
+      <PostContent html={html} />
     </Template>
   );
 };
 
-export default InfoPage;
+export default PostTemplate;
+
+export const queryMarkdownDataBySlug = graphql`
+  query queryMarkdownDataBySlug($slug: String) {
+    allMarkdownRemark(filter: { fields: { slug: { eq: $slug } } }) {
+      edges {
+        node {
+          html
+          frontmatter {
+            title
+            summary
+            date(formatString: "YYYY.MM.DD.")
+            categories
+            thumbnail {
+              childImageSharp {
+                fluid(fit: INSIDE, quality: 100) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;

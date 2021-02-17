@@ -1,9 +1,15 @@
 import React, { FunctionComponent } from 'react';
 import styled from '@emotion/styled';
 import PostHeadInfo from 'components/Post/PostHeadInfo';
+import Img, { FluidObject } from 'gatsby-image';
 
-const IMAGE_LINK =
-  'https://ji5485.github.io/static/4dc3342a67395060fe50eb0ecbe449e4/4d854/javascript-core-concept-summary-prototype-chaining-2.webp';
+interface PostHeadProps {
+  thumbnail: {
+    childImageSharp: {
+      fluid: FluidObject;
+    };
+  };
+}
 
 const PostHeadWrapper = styled.div`
   position: relative;
@@ -12,7 +18,7 @@ const PostHeadWrapper = styled.div`
   color: white;
 `;
 
-const BackgroundImage = styled.img`
+const BackgroundImage = styled(Img)`
   position: absolute;
   z-index: -1;
   width: 100%;
@@ -21,10 +27,14 @@ const BackgroundImage = styled.img`
   filter: brightness(0.25);
 `;
 
-const PostHead: FunctionComponent = function () {
+const PostHead: FunctionComponent<PostHeadProps> = function ({
+  thumbnail: {
+    childImageSharp: { fluid },
+  },
+}) {
   return (
     <PostHeadWrapper>
-      <BackgroundImage src={IMAGE_LINK} alt="thumbnail" />
+      <BackgroundImage fluid={fluid} alt="thumbnail" />
       <PostHeadInfo />
     </PostHeadWrapper>
   );
