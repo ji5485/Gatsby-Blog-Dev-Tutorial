@@ -65,11 +65,11 @@ const Category = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin-top: 10px;
-  margin: 15px -5px;
+  margin: 10px -5px;
 `;
 
 const CategoryItem = styled.div`
-  margin: 0 5px;
+  margin: 2.5px 5px;
   padding: 3px 5px;
   border-radius: 3px;
   background: black;

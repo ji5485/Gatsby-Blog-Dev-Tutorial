@@ -1,10 +1,24 @@
 import React, { FunctionComponent } from 'react';
 import { graphql } from 'gatsby';
 import Template from 'components/Common/Template';
-import PostHead from 'components/Post/PostHead';
+import PostHead, { PostHeadProps } from 'components/Post/PostHead';
 import PostContent from 'components/Post/PostContent';
+import CommentWidget from 'components/Post/CommentWidget';
 
-interface PostTemplateProps {}
+interface PostTemplateProps {
+  data: {
+    allMarkdownRemark: {
+      edges: [
+        {
+          node: {
+            html: string;
+            frontmatter: PostHeadProps & { summary: string };
+          };
+        },
+      ];
+    };
+  };
+}
 
 const PostTemplate: FunctionComponent<PostTemplateProps> = function ({
   data: {
@@ -19,6 +33,7 @@ const PostTemplate: FunctionComponent<PostTemplateProps> = function ({
     <Template>
       <PostHead {...frontmatter} />
       <PostContent html={html} />
+      <CommentWidget />
     </Template>
   );
 };
