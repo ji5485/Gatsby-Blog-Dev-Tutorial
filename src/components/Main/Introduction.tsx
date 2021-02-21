@@ -1,12 +1,8 @@
 import React, { FunctionComponent } from 'react';
 import styled from '@emotion/styled';
-import ProfileImage from 'components/Main/ProfileImage';
+import ProfileImage, { ProfileImageProps } from 'components/Main/ProfileImage';
 
-const Background = styled.div`
-  width: 100%;
-  background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
-  color: #ffffff;
-`;
+interface IntroductionProps extends ProfileImageProps {}
 
 const Wrapper = styled.div`
   display: flex;
@@ -22,6 +18,12 @@ const Wrapper = styled.div`
     height: 300px;
     padding: 0 20px;
   }
+`;
+
+const Background = styled.div`
+  width: 100%;
+  background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+  color: #ffffff;
 `;
 
 const SubTitle = styled.div`
@@ -43,11 +45,13 @@ const Title = styled.div`
   }
 `;
 
-const Introduction: FunctionComponent = function () {
+const Introduction: FunctionComponent<IntroductionProps> = function ({
+  profileImage,
+}) {
   return (
     <Background>
       <Wrapper>
-        <ProfileImage />
+        <ProfileImage profileImage={profileImage} />
 
         <div>
           <SubTitle>Nice to Meet You,</SubTitle>

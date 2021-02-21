@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useMemo } from 'react';
 import Template from 'components/Common/Template';
+import { ProfileImageProps } from 'components/Main/ProfileImage';
 import CategoryList, { CategoryListProps } from 'components/Main/CategoryList';
 import Introduction from 'components/Main/Introduction';
 import PostList, { PostType } from 'components/Main/PostList';
@@ -11,8 +12,21 @@ interface IndexPageProps {
     search: string;
   };
   data: {
+    site: {
+      siteMetadata: {
+        title: string;
+        description: string;
+        url: string;
+      };
+    };
     allMarkdownRemark: {
       edges: PostType[];
+    };
+    file: {
+      publicURL: string;
+      childImageSharp: {
+        fluid: ProfileImageProps['profileImage'];
+      };
     };
   };
 }
@@ -20,7 +34,14 @@ interface IndexPageProps {
 const IndexPage: FunctionComponent<IndexPageProps> = function ({
   location: { search },
   data: {
+    site: {
+      siteMetadata: { title, description, url },
+    },
     allMarkdownRemark: { edges },
+    file: {
+      publicURL,
+      childImageSharp: { fluid },
+    },
   },
 }) {
   const parsed: ParsedQuery<string> = queryString.parse(search);
@@ -55,8 +76,13 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
   );
 
   return (
-    <Template>
-      <Introduction />
+    <Template
+      title={title}
+      description={description}
+      url={url}
+      image={publicURL}
+    >
+      <Introduction profileImage={fluid} />
       <CategoryList
         selectedCategory={selectedCategory}
         categoryList={categoryList}
@@ -70,6 +96,13 @@ export default IndexPage;
 
 export const queryPostList = graphql`
   query queryPostList {
+    site {
+      siteMetadata {
+        title
+        description
+        url
+      }
+    }
     allMarkdownRemark(
       sort: { order: DESC, fields: [frontmatter___date, frontmatter___title] }
     ) {
@@ -97,6 +130,14 @@ export const queryPostList = graphql`
               }
             }
           }
+        }
+      }
+    }
+    file(name: { eq: "profile-image" }) {
+      publicURL
+      childImageSharp {
+        fluid(maxWidth: 120, maxHeight: 120, fit: INSIDE, quality: 100) {
+          ...GatsbyImageSharpFluid_withWebp
         }
       }
     }
