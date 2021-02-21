@@ -16,7 +16,7 @@ interface IndexPageProps {
       siteMetadata: {
         title: string;
         description: string;
-        url: string;
+        siteUrl: string;
       };
     };
     allMarkdownRemark: {
@@ -35,7 +35,7 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
   location: { search },
   data: {
     site: {
-      siteMetadata: { title, description, url },
+      siteMetadata: { title, description, siteUrl },
     },
     allMarkdownRemark: { edges },
     file: {
@@ -79,7 +79,7 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
     <Template
       title={title}
       description={description}
-      url={url}
+      url={siteUrl}
       image={publicURL}
     >
       <Introduction profileImage={fluid} />
@@ -100,7 +100,7 @@ export const queryPostList = graphql`
       siteMetadata {
         title
         description
-        url
+        siteUrl
       }
     }
     allMarkdownRemark(
