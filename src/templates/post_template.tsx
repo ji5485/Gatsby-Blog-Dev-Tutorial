@@ -1,9 +1,10 @@
 import React, { FunctionComponent } from 'react';
 import { graphql } from 'gatsby';
 import Template from 'components/Common/Template';
-import PostHead, { PostHeadProps } from 'components/Post/PostHead';
+import PostHead from 'components/Post/PostHead';
 import PostContent from 'components/Post/PostContent';
 import CommentWidget from 'components/Post/CommentWidget';
+import { FluidObject } from 'gatsby-image';
 
 interface PostTemplateProps {
   data: {
@@ -12,11 +13,25 @@ interface PostTemplateProps {
         {
           node: {
             html: string;
-            frontmatter: PostHeadProps & { summary: string };
+            frontmatter: {
+              title: string;
+              summary: string;
+              date: string;
+              categories: string[];
+              thumbnail: {
+                childImageSharp: {
+                  fluid: FluidObject;
+                };
+                publicURL: string;
+              };
+            };
           };
         },
       ];
     };
+  };
+  location: {
+    href: string;
   };
 }
 
@@ -24,14 +39,32 @@ const PostTemplate: FunctionComponent<PostTemplateProps> = function ({
   data: {
     allMarkdownRemark: { edges },
   },
+  location: { href },
 }) {
   const {
-    node: { html, frontmatter },
+    node: {
+      html,
+      frontmatter: {
+        title,
+        summary,
+        date,
+        categories,
+        thumbnail: {
+          childImageSharp: { fluid },
+          publicURL,
+        },
+      },
+    },
   } = edges[0];
 
   return (
-    <Template>
-      <PostHead {...frontmatter} />
+    <Template title={title} description={summary} url={href} image={publicURL}>
+      <PostHead
+        title={title}
+        date={date}
+        categories={categories}
+        thumbnail={fluid}
+      />
       <PostContent html={html} />
       <CommentWidget />
     </Template>
@@ -57,6 +90,7 @@ export const queryMarkdownDataBySlug = graphql`
                   ...GatsbyImageSharpFluid_withWebp
                 }
               }
+              publicURL
             }
           }
         }
