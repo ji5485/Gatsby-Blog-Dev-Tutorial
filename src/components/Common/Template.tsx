@@ -12,7 +12,7 @@ interface TemplateProps {
   children: ReactNode;
 }
 
-const Container = styled.div`
+const Container = styled.main`
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -47,6 +47,8 @@ const Template: FunctionComponent<TemplateProps> = function ({
         <meta name="twitter:image" content={image} />
         <meta name="twitter:site" content="@username" />
         <meta name="twitter:creator" content="@username" />
+
+        <html lang="ko" />
       </Helmet>
 
       <GlobalStyle />
