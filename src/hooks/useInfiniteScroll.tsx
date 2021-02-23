@@ -26,17 +26,17 @@ const useInfiniteScroll = function (
       if (!entries[0].isIntersecting) return;
 
       setCount(value => value + 1);
-      observer.disconnect();
+      observer.unobserve(entries[0].target);
     });
-  }, [count]);
+  }, []);
 
   useEffect(() => setCount(1), [selectedCategory]);
 
   useEffect(() => {
     if (
       NUMBER_OF_ITEMS_PER_PAGE * count >= postListByCategory.length ||
-      !containerRef.current ||
-      !containerRef.current.children.length ||
+      containerRef.current === undefined ||
+      containerRef.current.children.length === 0 ||
       observer.current === undefined
     )
       return;

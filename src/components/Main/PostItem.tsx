@@ -58,7 +58,7 @@ const Title = styled.div`
 const Date = styled.div`
   font-size: 14px;
   font-weight: 400;
-  opacity: 0.5;
+  opacity: 0.7;
 `;
 
 const Category = styled.div`
