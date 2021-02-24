@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://my-website-link.com/sitemap.xml
-Host: https://my-website-link.com
+Sitemap: https://hd152534.github.io/sitemap.xml
+Host: https://hd152534.github.io
