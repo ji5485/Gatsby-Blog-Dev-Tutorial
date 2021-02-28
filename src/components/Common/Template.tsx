@@ -45,16 +45,16 @@ const Template: FunctionComponent<TemplateProps> = function ({
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={image} />
-        <meta name="twitter:site" content="@username" />
-        <meta name="twitter:creator" content="@username" />
+        <meta name="twitter:site" content="@사용자이름" />
+        <meta name="twitter:creator" content="@사용자이름" />
 
         <meta
           name="google-site-verification"
-          content="6syZlXxmbozTjpdZepDbMpXADsu72pgttQ_Xh6kahVU"
+          content="웹 마스터 도구가 제공하는 Meta 태그"
         />
         <meta
           name="naver-site-verification"
-          content="4e1f5cfa90515b2e30cc00afe14ca7719af43781"
+          content="웹 마스터 도구가 제공하는 Meta 태그"
         />
 
         <html lang="ko" />

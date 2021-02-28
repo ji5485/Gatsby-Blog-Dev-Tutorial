@@ -20,7 +20,7 @@ const UtterancesWrapper = styled.div`
   }
 `;
 
-const CommentWidget: FunctionComponent = function ({}) {
+const CommentWidget: FunctionComponent = function () {
   const element = createRef<HTMLDivElement>();
 
   useEffect(() => {
@@ -31,7 +31,7 @@ const CommentWidget: FunctionComponent = function ({}) {
     const attributes: UtterancesAttributesType = {
       src,
       repo,
-      'issue-term': 'title',
+      'issue-term': 'pathname',
       label: 'Comment',
       theme: `github-light`,
       crossorigin: 'anonymous',

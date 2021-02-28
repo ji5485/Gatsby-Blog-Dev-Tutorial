@@ -2,7 +2,13 @@ import React, { FunctionComponent } from 'react';
 import styled from '@emotion/styled';
 import ProfileImage, { ProfileImageProps } from 'components/Main/ProfileImage';
 
-interface IntroductionProps extends ProfileImageProps {}
+type IntroductionProps = ProfileImageProps;
+
+const Background = styled.div`
+  width: 100%;
+  background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+  color: #ffffff;
+`;
 
 const Wrapper = styled.div`
   display: flex;
@@ -20,12 +26,6 @@ const Wrapper = styled.div`
   }
 `;
 
-const Background = styled.div`
-  width: 100%;
-  background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
-  color: #ffffff;
-`;
-
 const SubTitle = styled.div`
   font-size: 20px;
   font-weight: 400;
@@ -41,7 +41,7 @@ const Title = styled.div`
   font-weight: 700;
 
   @media (max-width: 768px) {
-    font-size: 23px;
+    font-size: 25px;
   }
 `;
 

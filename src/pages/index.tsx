@@ -1,11 +1,11 @@
 import React, { FunctionComponent, useMemo } from 'react';
 import Template from 'components/Common/Template';
-import { ProfileImageProps } from 'components/Main/ProfileImage';
 import CategoryList, { CategoryListProps } from 'components/Main/CategoryList';
 import Introduction from 'components/Main/Introduction';
 import PostList, { PostType } from 'components/Main/PostList';
-import queryString, { ParsedQuery } from 'query-string';
+import { ProfileImageProps } from 'components/Main/ProfileImage';
 import { graphql } from 'gatsby';
+import queryString, { ParsedQuery } from 'query-string';
 
 interface IndexPageProps {
   location: {
@@ -94,8 +94,8 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
 
 export default IndexPage;
 
-export const queryPostList = graphql`
-  query queryPostList {
+export const getPostList = graphql`
+  query getPostList {
     site {
       siteMetadata {
         title

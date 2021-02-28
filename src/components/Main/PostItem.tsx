@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
-import { Link } from 'gatsby';
 import styled from '@emotion/styled';
+import { Link } from 'gatsby';
 import Img, { FluidObject } from 'gatsby-image';
 
 interface PostItemProps {

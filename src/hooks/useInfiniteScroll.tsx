@@ -1,14 +1,23 @@
-import { useState, useEffect, useRef, useMemo } from 'react';
+import { MutableRefObject, useState, useEffect, useRef, useMemo } from 'react';
 import { PostType } from 'components/Main/PostList';
 
-const NUMBER_OF_ITEMS_PER_PAGE: number = 10;
+export type useInfiniteScrollType = {
+  containerRef: MutableRefObject<HTMLDivElement | null>;
+  postList: PostType[];
+};
+
+const NUMBER_OF_ITEMS_PER_PAGE = 10;
 
 const useInfiniteScroll = function (
   selectedCategory: string,
   posts: PostType[],
-) {
-  const containerRef = useRef<HTMLDivElement>();
-  const observer = useRef<IntersectionObserver>();
+): useInfiniteScrollType {
+  const containerRef: MutableRefObject<HTMLDivElement | null> = useRef<HTMLDivElement>(
+    null,
+  );
+  const observer: MutableRefObject<IntersectionObserver | null> = useRef<IntersectionObserver>(
+    null,
+  );
   const [count, setCount] = useState<number>(1);
 
   const postListByCategory = useMemo<PostType[]>(
@@ -35,9 +44,9 @@ const useInfiniteScroll = function (
   useEffect(() => {
     if (
       NUMBER_OF_ITEMS_PER_PAGE * count >= postListByCategory.length ||
-      containerRef.current === undefined ||
+      containerRef.current === null ||
       containerRef.current.children.length === 0 ||
-      observer.current === undefined
+      observer.current === null
     )
       return;
 
