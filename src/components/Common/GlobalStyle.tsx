@@ -11,6 +11,12 @@ const defaultStyle = css`
     font-family: 'Nanum Myeongjo', serif;
   }
 
+  html,
+  body,
+  #___gatsby {
+    height: 100%;
+  }
+
   a,
   a:hover {
     color: inherit;
