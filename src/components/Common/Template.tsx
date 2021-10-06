@@ -1,22 +1,22 @@
-import React, { FunctionComponent, ReactNode } from 'react';
-import styled from '@emotion/styled';
-import GlobalStyle from 'components/Common/GlobalStyle';
-import Footer from 'components/Common/Footer';
-import { Helmet } from 'react-helmet';
+import React, { FunctionComponent, ReactNode } from 'react'
+import styled from '@emotion/styled'
+import GlobalStyle from 'components/Common/GlobalStyle'
+import Footer from 'components/Common/Footer'
+import { Helmet } from 'react-helmet'
 
-interface TemplateProps {
-  title: string;
-  description: string;
-  url: string;
-  image: string;
-  children: ReactNode;
+type TemplateProps = {
+  title: string
+  description: string
+  url: string
+  image: string
+  children: ReactNode
 }
 
 const Container = styled.main`
   display: flex;
   flex-direction: column;
   height: 100%;
-`;
+`
 
 const Template: FunctionComponent<TemplateProps> = function ({
   title,
@@ -64,7 +64,7 @@ const Template: FunctionComponent<TemplateProps> = function ({
       {children}
       <Footer />
     </Container>
-  );
-};
+  )
+}
 
-export default Template;
+export default Template

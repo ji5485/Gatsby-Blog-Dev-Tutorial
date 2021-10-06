@@ -1,5 +1,5 @@
-import React, { FunctionComponent } from 'react';
-import styled from '@emotion/styled';
+import React, { FunctionComponent } from 'react'
+import styled from '@emotion/styled'
 
 const FooterWrapper = styled.footer`
   display: grid;
@@ -13,7 +13,7 @@ const FooterWrapper = styled.footer`
   @media (max-width: 768px) {
     font-size: 13px;
   }
-`;
+`
 
 const Footer: FunctionComponent = function () {
   return (
@@ -21,7 +21,7 @@ const Footer: FunctionComponent = function () {
       Thank You for Visiting My Blog, Have a Good Day 😆
       <br />© 2021 Developer Hyun, Powered By Gatsby.
     </FooterWrapper>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

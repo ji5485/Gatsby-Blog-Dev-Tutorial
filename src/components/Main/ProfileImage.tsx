@@ -1,12 +1,12 @@
-import React, { FunctionComponent } from 'react';
-import styled from '@emotion/styled';
-import Img, { FluidObject } from 'gatsby-image';
+import React, { FunctionComponent } from 'react'
+import styled from '@emotion/styled'
+import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image'
 
-export interface ProfileImageProps {
-  profileImage: FluidObject;
+type ProfileImageProps = {
+  profileImage: IGatsbyImageData
 }
 
-const ProfileImageWrapper = styled(Img)`
+const ProfileImageWrapper = styled(GatsbyImage)`
   width: 120px;
   height: 120px;
   margin-bottom: 30px;
@@ -16,12 +16,12 @@ const ProfileImageWrapper = styled(Img)`
     width: 80px;
     height: 80px;
   }
-`;
+`
 
 const ProfileImage: FunctionComponent<ProfileImageProps> = function ({
   profileImage,
 }) {
-  return <ProfileImageWrapper fluid={profileImage} alt="Profile Image" />;
-};
+  return <ProfileImageWrapper image={profileImage} alt="Profile Image" />
+}
 
-export default ProfileImage;
+export default ProfileImage

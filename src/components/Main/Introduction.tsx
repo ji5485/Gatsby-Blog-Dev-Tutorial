@@ -1,14 +1,17 @@
-import React, { FunctionComponent } from 'react';
-import styled from '@emotion/styled';
-import ProfileImage, { ProfileImageProps } from 'components/Main/ProfileImage';
+import React, { FunctionComponent } from 'react'
+import styled from '@emotion/styled'
+import { IGatsbyImageData } from 'gatsby-plugin-image'
+import ProfileImage from 'components/Main/ProfileImage'
 
-type IntroductionProps = ProfileImageProps;
+type IntroductionProps = {
+  profileImage: IGatsbyImageData
+}
 
 const Background = styled.div`
   width: 100%;
   background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
   color: #ffffff;
-`;
+`
 
 const Wrapper = styled.div`
   display: flex;
@@ -24,7 +27,7 @@ const Wrapper = styled.div`
     height: 300px;
     padding: 0 20px;
   }
-`;
+`
 
 const SubTitle = styled.div`
   font-size: 20px;
@@ -33,7 +36,7 @@ const SubTitle = styled.div`
   @media (max-width: 768px) {
     font-size: 15px;
   }
-`;
+`
 
 const Title = styled.div`
   margin-top: 5px;
@@ -43,7 +46,7 @@ const Title = styled.div`
   @media (max-width: 768px) {
     font-size: 25px;
   }
-`;
+`
 
 const Introduction: FunctionComponent<IntroductionProps> = function ({
   profileImage,
@@ -59,7 +62,7 @@ const Introduction: FunctionComponent<IntroductionProps> = function ({
         </div>
       </Wrapper>
     </Background>
-  );
-};
+  )
+}
 
-export default Introduction;
+export default Introduction

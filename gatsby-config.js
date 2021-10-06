@@ -29,8 +29,19 @@ module.exports = {
         path: `${__dirname}/static`,
       },
     },
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        formats: ['auto', 'webp'],
+        quality: 100,
+        placeholder: 'blurred',
+        transformOptions: {
+          fit: 'COVER',
+        },
+      }
+    },
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    `gatsby-plugin-image`,
     {
       resolve: `gatsby-transformer-remark`,
       options: {
